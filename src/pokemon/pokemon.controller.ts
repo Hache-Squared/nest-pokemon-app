@@ -20,7 +20,7 @@ export class PokemonController {
       paginationDto
     });
     
-    return this.pokemonService.findAll();
+    return this.pokemonService.findAll(paginationDto);
   }
 
   @Get(':term')
