@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, InternalServerErrorException, NotFound
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { isValidObjectId, Model } from 'mongoose';
-import { Pokemon } from './entities/pokemon.entity';
+import { Pokemon, PokemonDocument } from './entities/pokemon.entity';
 import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
@@ -31,7 +31,7 @@ export class PokemonService {
   }
 
   async findOne(term: string) {
-    let pokemon: Pokemon;
+    let pokemon: PokemonDocument;
     if(!isNaN(+term)){
       pokemon = await this.pokemonModel.findOne({
         no: Number(term)
