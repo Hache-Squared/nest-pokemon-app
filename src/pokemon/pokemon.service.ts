@@ -36,6 +36,9 @@ export class PokemonService {
         no: 1
       })
       .select('-__v');
+      //.select({ __v: 0, name: 0 }); // 0 significa "No lo traigas"
+      //.select('-__v -updatedAt'); // Agrega todos los que quieras con un espacio
+
   }
 
   async findOne(term: string) {
