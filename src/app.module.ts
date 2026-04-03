@@ -20,14 +20,18 @@ import { JoiValidationSchema } from './config/joi.validation';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..','public')
     }),
-    MongooseModule.forRootAsync({
-      inject: [ConfigService],
-      imports:[ConfigModule],
-      useFactory: async(configService: ConfigService) => ({
-        uri: configService.get<string>('MONGODB')
-      }),
+    // MongooseModule.forRootAsync({
+    //   inject: [ConfigService],
+    //   imports:[ConfigModule],
+    //   useFactory: async(configService: ConfigService) => ({
+    //     uri: configService.get<string>('MONGODB')
+    //   }),
+    //}),
 
+    MongooseModule.forRoot(process.env.MONGODB, {
+      dbName: 'pokemonsdb'
     }),
+
     PokemonModule,
     CommonModule,
     SeedModule,
